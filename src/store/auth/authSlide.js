@@ -17,7 +17,7 @@ const reducers = {
             email: payload.email,
             displayName: payload.displayName,
             photoURL: payload.photoURL,
-            errorMessage: payload.errorMessage,
+            errorMessage: payload?.errorMessage,
         });
     },
     logout: (state, {payload}) => {
@@ -27,7 +27,7 @@ const reducers = {
             email: null,
             displayName: null,
             photoURL: null,
-            errorMessage: payload.errorMessage,
+            errorMessage: payload?.errorMessage,
         });
     },
     checkingCredentials: (state) => {
