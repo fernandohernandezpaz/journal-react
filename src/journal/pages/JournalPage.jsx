@@ -21,8 +21,8 @@ export const JournalPage = () => {
 
       {
         (!!!activeNote)
-        ? <NoteView />
-        : <NothingSelectedView />
+        ? <NothingSelectedView />
+        : <NoteView />
       }
 
       <IconButton

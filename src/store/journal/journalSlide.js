@@ -15,27 +15,34 @@ const initialState = {
 };
 
 const reducers = {
-    savingNewNote: (state, action) => {
-        state.isSaving = true;
-    },
     addNewEmptyNote: (state, { payload }) => {
         state.notes.push(payload);
         state.isSaving = false;
+        state.actionMessage = 'Note saved successfully';
     },
     setActiveNote: (state, { payload }) => {
-        state.active = payload;
+        state.activeNote = payload;
     },
     setNotes: (state, { payload: notes }) => {
         state.notes = notes;
     },
-    setSaving: (state, action) => {
-
+    setSaving: (state, _) => {
+      state.isSaving = true;
     },
-    updateNote: (state, action) => {
-
+    updateNote: (state, { payload }) => {
+      state.isSaving = false;
+      state.notes = state.notes.map(note => {
+        if (note.id === payload.id) {
+          return payload;
+        }
+        return note;
+      });
+      state.actionMessage = 'Note updated successfully';
     },
-    deleteNoteById: (state, action) => {
-
+    deleteNoteById: (state, { payload }) => {
+      state.activeNote = null;
+      state.notes = state.notes.filter(note => note.id !== payload.id);
+      state.isSaving = false;
     }
 }
 
@@ -49,7 +56,6 @@ export const journalSlide = createSlice({
 export const {
     addNewEmptyNote,
     deleteNoteById,
-    savingNewNote,
     setActiveNote,
     setNotes,
     setSaving,
