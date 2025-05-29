@@ -10,14 +10,14 @@ const initialState = {
 };
 
 const reducers = {
-    login: (state, {payload}) => { 
+    login: (state, {payload}) => {
         Object.assign(state, {
             status: 'authenticated',
             uid: payload.uid,
             email: payload.email,
             displayName: payload.displayName,
             photoURL: payload.photoURL,
-            errorMessage: payload?.errorMessage,
+            errorMessage: payload?.errorMessage ?? null,
         });
     },
     logout: (state, {payload}) => {
@@ -27,7 +27,7 @@ const reducers = {
             email: null,
             displayName: null,
             photoURL: null,
-            errorMessage: payload?.errorMessage,
+            errorMessage: payload?.errorMessage ?? null,
         });
     },
     checkingCredentials: (state) => {
@@ -38,7 +38,7 @@ const reducers = {
 export const authSlide = createSlice({
     name: 'auth',
     initialState,
-    reducers 
+    reducers
 });
 
 export const { login, logout, checkingCredentials } = authSlide.actions;
