@@ -1,4 +1,5 @@
 module.exports = {
-  TestEnvironment: 'jet-enviroment-jsdom',
+  testEnvironment: 'jest-environment-jsdom',
   setupFiles: ['./jest.setup.js'],
+  transformIgnorePatterns: [],
 }
