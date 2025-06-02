@@ -1,4 +1,4 @@
-import { authSlide, login, logout } from "../../../src/store/auth/authSlide";
+import { authSlide, checkingCredentials, login, logout } from "../../../src/store/auth/authSlide";
 import { authenticatedState, demoUserState, initialState } from "../../fixtures/authFixtures";
 
 describe( 'Test authSlice', () => {
@@ -23,7 +23,14 @@ describe( 'Test authSlice', () => {
 
     const state = authSlide.reducer( initialState, login(demoUserState) );
 
-    expect( state ).toEqual( demoUserState );
+    expect( state ).toEqual( {
+      status: 'authenticated',
+      uid: demoUserState.uid,
+      email: demoUserState.email,
+      displayName: demoUserState.displayName,
+      photoURL: demoUserState.photoURL,
+      errorMessage: null,
+    } );
 
   });
 
@@ -52,6 +59,14 @@ describe( 'Test authSlice', () => {
       'errorMessage': errorMessage,
     });
 
+
+  });
+
+  test( 'should change the status to checking', () => {
+
+    const state = authSlide.reducer( authenticatedState, checkingCredentials() );
+
+    expect( state.status ).toBe( 'checking' );
 
   });
 

@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const reducers = {
-    login: (state, {payload}) => {
+    login: (state, { payload }) => {
         Object.assign(state, {
             status: 'authenticated',
             uid: payload.uid,
@@ -20,7 +20,7 @@ const reducers = {
             errorMessage: payload?.errorMessage ?? null,
         });
     },
-    logout: (state, {payload}) => {
+    logout: (state, { payload }) => {
         Object.assign(state, {
             status: 'no-authenticated',
             uid: null,

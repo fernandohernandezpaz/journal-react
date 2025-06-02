@@ -11,11 +11,11 @@ export const startGoogleSignIn = () => {
     return async(dispatch) => {
 
         dispatch( checkingCredentials() );
-        
-        const {ok, errorMessage='', ...results} = await signInWithGoogle();
+
+        const {ok, errorMessage, ...results} = await signInWithGoogle();
 
         if (!ok) return dispatch( logout(errorMessage) );
-        
+
         dispatch( login(results) );
     };
 }
