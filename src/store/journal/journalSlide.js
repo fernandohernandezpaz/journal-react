@@ -26,7 +26,7 @@ const reducers = {
     setNotes: (state, { payload: notes }) => {
         state.notes = notes;
     },
-    setSaving: (state, _) => {
+    setSaving: (state) => {
       state.isSaving = true;
     },
     updateNote: (state, { payload }) => {
